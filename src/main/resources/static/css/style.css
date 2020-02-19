@@ -1,0 +1,43 @@
+html,
+body,
+.max-height {
+    height: 100%;
+}
+
+.bg-grey {
+    background-color: #F2F2F2;
+}
+
+.bg-light-grey {
+    background-color: #F8F8F8;
+}
+
+a.d-block {
+    color: #509ED4;
+}
+
+div.col-sm-2 a.active {
+    background-color: #509ED4;
+    color: #FFFFFF;
+}
+
+div.col-sm-2 a:hover {
+    background-color: #F2F2F2;
+    color: #215A85;
+}
+
+main ul.nav-tabs a {
+    color: #509ED4;
+}
+
+main div.nav a:hover {
+    color: #215A85;
+}
+
+#ajaxRegistrationDiv {
+    display: none;
+    left: 50%;
+    position: fixed;
+    top: 20%;
+    z-index: 100;
+}

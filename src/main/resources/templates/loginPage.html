@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login page</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link href="/static/css/formStyle.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        .form-style-6{
+            font: 95% Arial, Helvetica, sans-serif;
+            max-width: 300px;
+            margin: 10px auto;
+            padding: 16px;
+            background: #F7F7F7;
+        }
+        .form-style-6 h1{
+            background: #215A85;
+            padding: 20px 0;
+            font-size: 140%;
+            font-weight: 300;
+            text-align: center;
+            color: #fff;
+            margin: -16px -16px 16px -16px;
+        }
+        .form-style-6 input[type="text"],
+        .form-style-6 input[type="date"],
+        .form-style-6 input[type="datetime"],
+        .form-style-6 input[type="email"],
+        .form-style-6 input[type="password"],
+        .form-style-6 input[type="number"],
+        .form-style-6 input[type="search"],
+        .form-style-6 input[type="time"],
+        .form-style-6 input[type="url"],
+        .form-style-6 textarea,
+        .form-style-6 select
+        {
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            width: 100%;
+            background: #fff;
+            margin-bottom: 4%;
+            border: 1px solid #ccc;
+            padding: 3%;
+            color: #555;
+            font: 95% Arial, Helvetica, sans-serif;
+        }
+        .form-style-6 input[type="text"]:focus,
+        .form-style-6 input[type="date"]:focus,
+        .form-style-6 input[type="datetime"]:focus,
+        .form-style-6 input[type="email"]:focus,
+        .form-style-6 input[type="password"]:focus,
+        .form-style-6 input[type="number"]:focus,
+        .form-style-6 input[type="search"]:focus,
+        .form-style-6 input[type="time"]:focus,
+        .form-style-6 input[type="url"]:focus,
+        .form-style-6 textarea:focus,
+        .form-style-6 select:focus
+        {
+            box-shadow: 0 0 5px #215A85;
+            padding: 3%;
+            border: 1px solid #215A85;
+        }
+
+        .form-style-6 input[type="submit"],
+        .form-style-6 input[type="button"]{
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            width: 100%;
+            padding: 3%;
+            background: #215A85;
+            font-size: 140%;
+            border-bottom: 2px solid #215A85;
+            border-top-style: none;
+            border-right-style: none;
+            border-left-style: none;
+            color: #fff;
+        }
+        .form-style-6 input[type="submit"]:hover,
+        .form-style-6 input[type="button"]:hover{
+            background: #215A85;
+        }
+
+        img {
+            display: block;
+            width: 80px;
+            margin: 30px auto;
+            box-shadow: 0 5px 10px -7px #333333;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<div class="form-style-6">
+    <h1>Login<br/></h1>
+    <form action="/login/process" method="POST">
+        <label>
+            <input type="text" name="username" placeholder="Name" />
+        </label>
+        <label>
+            <input type="password" name="password" placeholder="Password" />
+        </label>
+        <input type="submit" value="Login" />
+    </form>
+    <br><br>
+    <a href="/googleLogin">
+        <img style="width: 50px;" src="http://www.androidpolice.com/wp-content/themes/ap2/ap_resize/ap_resize.php?src=http%3A%2F%2Fwww.androidpolice.com%2Fwp-content%2Fuploads%2F2015%2F10%2Fnexus2cee_Search-Thumb-150x150.png&w=150&h=150&zc=3" alt="google_icon">
+        <!--        <p>Войти с учётной записью Google</p>-->
+    </a>
+</div>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/js/script.js"></script>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <title>Admin page</title>
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow">
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="#">Project name</a>
+        </li>
+    </ul>
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="/logout">Logout</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container-fluid max-height">
+    <div class="row max-height">
+        <div class="col-sm-2 bg-light-grey pr-0 pl-0 pt-4">
+            <div class="nav flex-column bg-light-grey" id="sidebar-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link d-block active" id="v-pills-adminPage-tab" data-toggle="pill"
+                   href="#v-pills-adminPage" role="tab"
+                   aria-controls="v-pills-adminPage" aria-selected="true">Admin</a>
+                <a class="nav-link d-block" id="v-pills-userPage-tab" data-toggle="pill" href="#v-pills-userPage"
+                   role="tab"
+                   aria-controls="v-pills-userPage" aria-selected="false">User</a>
+            </div>
+        </div>
+        <div class="tab-content col-sm-10 pr-0 pl-0" id="v-pills-tabContent">
+            <div class="tab-pane fade show active max-height" id="v-pills-adminPage" role="tabpanel"
+                 aria-labelledby="v-pills-adminPage-tab">
+                <main role="main" class="bg-grey pl-5 pt-4 max-height">
+                    <h2 class="mb-4">Admin panel</h2>
+
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#userstable" id="usersTableLink">Users table</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#newuser" id="newUserLink">New User</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="userstable" class="tab-pane fade show active">
+                            <h5 class="p-3 mb-0 border-left border-right rounded-top">All users</h5>
+                            <div class="table-responsive">
+                                <table class="table table-striped border">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Role(s)</th>
+                                        <th scope="col">Login</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Edit</th>
+                                        <th scope="col">Delete</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tbody">
+<!--                                    <th:block th:each="user : ${usersList}">-->
+<!--                                        <tr th:id="${user.id}">-->
+<!--                                            <td th:id="${'userId-' + user.id}" th:text="${user.id}"></td>-->
+<!--                                            <td th:id="${'userRoles-' + user.id}" th:text="${user.rolesToString()}"></td>-->
+<!--                                            <td th:id="${'username-' + user.id}" th:text="${user.username}"></td>-->
+<!--                                            <td th:id="${'userEmail-' + user.id}" th:text="${user.email}"></td>-->
+<!--                                            <td>-->
+<!--                                                &lt;!&ndash; Button trigger modal &ndash;&gt;-->
+<!--                                                <button type="button" class="btn btn-info edit-user" data-toggle="modal"-->
+<!--                                                        data-target="#modalWindow"-->
+<!--                                                        th:id="${'editButton-' + user.id}">Edit-->
+<!--                                                </button>-->
+<!--                                            </td>-->
+<!--                                            <td>-->
+<!--                                                <button type="button" class="btn btn-info delete-row"-->
+<!--                                                        th:id="${'deleteButton-' + user.id}">Delete-->
+<!--                                                </button>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                    </th:block>-->
+                                    </tbody>
+                                    <!-- The Modal -->
+                                    <div class="modal" id="modalWindow">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Edit user</h5>
+                                                    <button type="button" class="close" data-dismiss="modal">
+                                                        &times;
+                                                    </button>
+                                                </div>
+
+                                                <!-- Modal body -->
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label for="modal-input-id-disabled">ID</label>
+                                                        <input type="text" class="form-control"
+                                                               id="modal-input-id-disabled" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="modal-input-username-disabled">Username</label>
+                                                        <input type="text" class="form-control"
+                                                               id="modal-input-username-disabled" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="modal-input-password">Password</label>
+                                                        <input type="password" class="form-control"
+                                                               id="modal-input-password" name="password"
+                                                               placeholder="Enter password">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="modal-input-email">Email</label>
+                                                        <input type="email" class="form-control"
+                                                               id="modal-input-email" name="email"
+                                                               placeholder="Enter email">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="modal-input-roles">Roles</label>
+                                                        <select class="form-control" id="modal-input-roles"
+                                                                name="userRoles" multiple>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Modal footer -->
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary closeBtn"
+                                                            data-dismiss="modal">Close
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary" id="updateUser">Save changes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="newuser" class="tab-pane fade">
+                            <h5 class="p-3 mb-0 border-right border-bottom border-left border-right rounded-top">Add new
+                                user</h5>
+                            <div class="container border bg-white mw-100 pt-3 pb-3 text-center rounded-bottom">
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-4">
+                                        <div class="alert alert-secondary" id="ajaxRegistrationDiv"></div>
+                                        <form class="mw-100 text-center" id="registrationForm">
+                                            <div class="form-group">
+                                                <label for="usernameInput">Username</label>
+                                                <input type="text" class="form-control" id="usernameInput"
+                                                       name="username"
+                                                       placeholder="Enter username">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="passwordInput">Password</label>
+                                                <input type="password" class="form-control" id="passwordInput"
+                                                       name="password"
+                                                       placeholder="Enter password">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="emailInput">Email</label>
+                                                <input type="email" class="form-control" id="emailInput" name="email"
+                                                       placeholder="Enter email">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="rolesInput">Role</label>
+                                                <select class="form-control" id="rolesInput" multiple name="roles">
+                                                    <option value="ADMIN" selected>ADMIN</option>
+                                                    <option value="USER" selected>USER</option>
+                                                </select>
+                                            </div>
+                                            <button type="button" id="registrationButton"
+                                                    class="btn btn-success justify-content-center">Add new User
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+            <div class="tab-pane fade max-height" id="v-pills-userPage" role="tabpanel"
+                 aria-labelledby="v-pills-userPage-tab">
+                <main role="main" class="bg-grey pl-5 pt-4 max-height">
+                    <h2 class="mb-4">User page</h2>
+<!--                    <p th:text="'Hello, ' + ${user.username} + '!'"></p>-->
+                </main>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
