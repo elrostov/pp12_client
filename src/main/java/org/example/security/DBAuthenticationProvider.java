@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -26,21 +27,24 @@ public class DBAuthenticationProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication auth)
             throws AuthenticationException {
-        String username = auth.getName();
-        String password = auth.getCredentials()
-                .toString();
-
-        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        if (userDetails != null) {
+        if (!"GOOGLE".equals(auth.getDetails().toString())) {
+            String username = auth.getName();
+            String password = auth.getCredentials().toString();
+            String encodedPassword = passwordEncoder.encode(password);
+            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+            String userDetailsPassword = userDetails.getPassword();
+            boolean is = encodedPassword.equals(userDetailsPassword);
             if (passwordEncoder.matches(password, userDetails.getPassword())) {
-                return new UsernamePasswordAuthenticationToken
+                UsernamePasswordAuthenticationToken token =
+                        new UsernamePasswordAuthenticationToken
                         (userDetails, password, userDetails.getAuthorities());
+                token.setDetails("DatabaseUser");
+                return token;
             } else {
                 throw new BadCredentialsException("Incorrect password");
             }
-        } else {
-            throw new BadCredentialsException("Incorrect username");
         }
+        return null;
     }
 
     @Override

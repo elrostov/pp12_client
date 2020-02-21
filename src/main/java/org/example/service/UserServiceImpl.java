@@ -2,6 +2,8 @@ package org.example.service;
 
 import org.example.model.User;
 import org.example.model.UserDto;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,13 +16,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class
-UserServiceImpl implements UserService {
+@PropertySource("classpath:server.properties")
+public class UserServiceImpl implements UserService {
 
-    private final String SERVER_URL = "http://localhost:8081/api/admin/";
+    @Value("${server_url}")
+    private final String SERVER_URL = null;
 
     private final PasswordEncoder passwordEncoder;
-
     private final RestTemplate restTemplate;
 
     public UserServiceImpl(PasswordEncoder passwordEncoder, RestTemplate restTemplate) {

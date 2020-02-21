@@ -13,12 +13,10 @@ public class GoogleAuthenticationProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication auth)
             throws AuthenticationException {
-        User user = (User) auth.getPrincipal();
-        String password = auth.getCredentials()
-                .toString();
-        if ("Google user".equals(password)) {
+        if ("GOOGLE".equals(auth.getDetails().toString())) {
+            User user = (User) auth.getPrincipal();
             return new UsernamePasswordAuthenticationToken
-                    (user, password, user.getAuthorities());
+                    (user, user.getPassword(), user.getAuthorities());
         } else {
             return null;
         }
